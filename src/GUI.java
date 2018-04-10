@@ -4,7 +4,8 @@ import javafx.application.Application;
         import javafx.geometry.Pos;
         import javafx.scene.Scene;
         import javafx.scene.control.Button;
-        import javafx.scene.layout.*;
+import javafx.scene.control.Label;
+import javafx.scene.layout.*;
         import javafx.scene.paint.Color;
         import javafx.scene.shape.Rectangle;
         import javafx.stage.Stage;
@@ -75,74 +76,58 @@ public class GUI extends Application {
 
 //        mapGrid.setGridLinesVisible(true);
 
-        HBox controls = new HBox();
-        controls.setPrefSize(1300,150);
+        /*
+        ******************************************
+         * Creating the top part of the GUI
+        ******************************************
+        */
+
+
+        HBox title = new HBox();
+        title.setPrefSize(1300,80);
+
+        Region region1 = new Region();
+        HBox.setHgrow(region1, Priority.ALWAYS);
+
+        Region region2 = new Region();
+        HBox.setHgrow(region2, Priority.ALWAYS);
+
+        //controls.setStyle("-fx-border-color: #3399CC;");//setting background color of the grid
+
+        Label lblTitle = new Label("Path Finder");
+        lblTitle.setStyle("-fx-font-size: 40pt;");
+        title.getChildren().addAll(region1,lblTitle,region2);
+
+        mainLayer.setAlignment(title, Pos.CENTER);
+        mainLayer.setMargin(title, new Insets(20,210,10,210));
+        mainLayer.setTop(title);
+
+
+        /*
+         ******************************************
+         * Creating the bottom part of the GUI
+         ******************************************
+         */
 
         HBox bottom = new HBox();
-        bottom.setPrefSize(1300,300);
+        bottom.setPrefSize(1300,500);
 
         bottom.setStyle("-fx-border-color: #3399CC;");//setting background color of the grid
 
-        controls.setStyle("-fx-border-color: #3399CC;");//setting background color of the grid
 
-        mainLayer.setTop(controls);
+
+
 
         mainLayer.setBottom(bottom);
 
         mainLayer.setPrefSize(1300,600);
 
 
-
-
-
-//
-
-
-
-//        GridPane grid = new GridPane();
-//        int numRows = 4 ;
-//        int numColumns = 3 ;
-//        for (int row = 0 ; row < numRows ; row++ ){
-//            RowConstraints rc = new RowConstraints();
-//            rc.setFillHeight(true);
-//            rc.setVgrow(Priority.ALWAYS);
-//            grid.getRowConstraints().add(rc);
-//        }
-//        for (int col = 0 ; col < numColumns; col++ ) {
-//            ColumnConstraints cc = new ColumnConstraints();
-//            cc.setFillWidth(true);
-//            cc.setHgrow(Priority.ALWAYS);
-//            grid.getColumnConstraints().add(cc);
-//        }
-//
-//        for (int i = 0 ; i < 9 ; i++) {
-//            Button button = createButton(Integer.toString(i+1));
-//            grid.add(button, i % 3, i / 3);
-//        }
-//        grid.add(createButton("#"), 0, 3);
-//        grid.add(createButton("0"), 1, 3);
-//        grid.add(createButton("*"), 2, 3);
-//
-//        Scene scene = new Scene(grid);
-//        primaryStage.setScene(scene);
-//        primaryStage.show();
-
         Scene scene = new Scene(mainLayer, 800, 900);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
 
-//    private Button createButton(String text) {
-//        Button button = new Button(text);
-//        button.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-//        button.setOnAction(e -> System.out.println(text));
-//        return button ;
-//    }
 
-
-
-
-
-//    }
 
 }
