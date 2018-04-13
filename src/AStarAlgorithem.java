@@ -1,28 +1,38 @@
+import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
 public class AStarAlgorithem {
 
-    private Node nodeGrid[][]= new Node[20][20];
+    private static Node nodeGrid[][]= new Node[20][20];
     private static PriorityQueue<Node> openSet;
+    private static ArrayList<Node> closedSet;
 
-    public void initialiseNodeGrid(){
+    public static void initialiseNodeGrid(){
         for (int r = 0; r < 20; r++) {
             for (int c = 0; c < 20; c++) {
-                Node node = new Node();
+                Node node = new Node(r,c);
                 nodeGrid[r][c] = node;
             }
         }
     }
 
-
-    public static  void main(String[] args){
-
-
+    public static void addNeighbours(){
 
     }
 
+
+
     public static void Algorithem(){
+
+        GridPane mapGrid = GUI.getMapGrid();
+
+        initialiseNodeGrid();
+        addNeighbours();
 
         openSet = new PriorityQueue<Node>(10, new Comparator<Node>() {
             public int compare(Node n1, Node n2) {
@@ -36,6 +46,33 @@ public class AStarAlgorithem {
 
             }
         });
+
+        Node start = nodeGrid[0][0];
+        Node end = nodeGrid[5][20]; //5th row 16th column
+
+
+        openSet.add(start);
+
+
+
+
+        while(!openSet.isEmpty()){
+
+            while (!openSet.isEmpty()) {
+                Node node = openSet.poll();
+                int x = node.getX();
+                int y = node.getY();
+                Rectangle rec = new Rectangle();
+                rec.setWidth(19);
+                rec.setHeight(19);
+                rec.setFill(Color.RED);
+                mapGrid.add(rec,y,x);
+
+            }
+
+        }
+
+
 
     }
 

@@ -1,6 +1,8 @@
 
 import javafx.application.Application;
-        import javafx.geometry.Insets;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Insets;
         import javafx.geometry.Pos;
         import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -22,7 +24,16 @@ public class GUI extends Application {
     private RadioButton Euclidean;
     private RadioButton Manhattan;
     private Button draw;
+    private static GridPane mapGrid;
 
+
+    public static GridPane getMapGrid() {
+        return mapGrid;
+    }
+
+    public static void setMapGrid(GridPane grid) {
+        mapGrid = grid;
+    }
 
     public static void main(String[] args) {
         launch(args);
@@ -37,7 +48,7 @@ public class GUI extends Application {
 //        mapGrid.setVgap(20);// setting vertical gap between lines
         mainLayer.setPadding(new Insets(0, 0, 0, 0));
 
-        GridPane mapGrid = new GridPane();
+            mapGrid = new GridPane();
 //        mapGrid.setStyle("-fx-border-color: #3399CC;");//setting background color of the grid
 
         //creating column constraints for 10 columns
@@ -197,6 +208,12 @@ public class GUI extends Application {
 
         draw =new Button("DRAW");
         controls.add(draw,4,7,2,2);
+
+        draw.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+                AStarAlgorithem.Algorithem();
+            }
+        });
 
         Scene scene = new Scene(mainLayer, 800, 950);
         primaryStage.setResizable(false);

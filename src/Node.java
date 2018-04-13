@@ -10,6 +10,11 @@ public class Node {
     private double totalDistance;
     private ArrayList<Node> neighbours = new ArrayList<Node>();
 
+    public Node(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
     public ArrayList<Node> getNeighbours() {
         return neighbours;
     }
